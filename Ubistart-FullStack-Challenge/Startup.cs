@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ubistart_FullStack_Challenge.Data.Context;
 
 namespace Ubistart_FullStack_Challenge
 {
@@ -21,6 +22,7 @@ namespace Ubistart_FullStack_Challenge
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
+			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
