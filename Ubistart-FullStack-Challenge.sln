@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ubistart-FullStack-Challenge", "Ubistart-FullStack-Challenge\Ubistart-FullStack-Challenge.csproj", "{FD402707-B66C-4085-A0E7-3F517A0F4581}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD402707-B66C-4085-A0E7-3F517A0F4581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD402707-B66C-4085-A0E7-3F517A0F4581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD402707-B66C-4085-A0E7-3F517A0F4581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD402707-B66C-4085-A0E7-3F517A0F4581}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC5D2A19-D32B-4ECD-BFC4-E54A0DA2ADCC}
+	EndGlobalSection
+EndGlobal
