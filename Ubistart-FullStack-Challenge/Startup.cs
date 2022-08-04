@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ubistart_FullStack_Challenge.Application;
+using Ubistart_FullStack_Challenge.Application.Interfaces;
 using Ubistart_FullStack_Challenge.Data.Context;
 
 namespace Ubistart_FullStack_Challenge
@@ -23,6 +25,9 @@ namespace Ubistart_FullStack_Challenge
 		{
 			services.AddControllersWithViews();
 			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
+
+			services.AddScoped<IUserService, UserService>();
+
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
