@@ -9,7 +9,7 @@ using Ubistart_FullStack_Challenge.Data.Context;
 namespace Ubistart_FullStack_Challenge.Data.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20220803154054_CreateUserTable")]
+    [Migration("20220804004557_CreateUserTable")]
     partial class CreateUserTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,11 @@ namespace Ubistart_FullStack_Challenge.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()

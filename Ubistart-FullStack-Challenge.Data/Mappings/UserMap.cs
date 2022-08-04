@@ -12,6 +12,7 @@ namespace Ubistart_FullStack_Challenge.Data.Mappings
 			builder.Property(x => x.Name).IsRequired();
 			builder.Property(x => x.Email).IsRequired();
 			builder.Property(x => x.Password).IsRequired();
+			builder.Property(x => x.IsAdmin).HasDefaultValue(false);
 		}
 	}
 }
