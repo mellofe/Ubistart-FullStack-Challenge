@@ -9,7 +9,7 @@ using Ubistart_FullStack_Challenge.Data.Context;
 namespace Ubistart_FullStack_Challenge.Data.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20220804004557_CreateUserTable")]
+    [Migration("20220804013209_CreateUserTable")]
     partial class CreateUserTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,16 @@ namespace Ubistart_FullStack_Challenge.Data.Migrations
                     b.HasKey("IdUser");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            IdUser = 1,
+                            Email = "admin@ubistart.com",
+                            IsAdmin = true,
+                            Name = "admin",
+                            Password = "123456"
+                        });
                 });
 #pragma warning restore 612, 618
         }

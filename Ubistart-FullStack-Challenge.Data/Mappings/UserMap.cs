@@ -8,7 +8,6 @@ namespace Ubistart_FullStack_Challenge.Data.Mappings
 	{
 		public void Configure(EntityTypeBuilder<User> builder)
 		{
-			builder.Property(x => x.IdUser).IsRequired();
 			builder.Property(x => x.Name).IsRequired();
 			builder.Property(x => x.Email).IsRequired();
 			builder.Property(x => x.Password).IsRequired();

@@ -21,6 +21,11 @@ namespace Ubistart_FullStack_Challenge.Data.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.IdUser);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "IdUser", "Email", "IsAdmin", "Name", "Password" },
+                values: new object[] { 1, "admin@ubistart.com", true, "admin", "123456" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

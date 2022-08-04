@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220804004557_CreateUserTable.cs" />
+    <Compile Remove="Migrations\20220804004557_CreateUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20220804011133_CreateUserTable.cs" />
+    <Compile Remove="Migrations\20220804011133_CreateUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20220804012241_CreateDefaultAdminUser.cs" />
+    <Compile Remove="Migrations\20220804012241_CreateDefaultAdminUser.Designer.cs" />
+    <Compile Remove="Migrations\20220804012619_CreateDefaultAdminUser.cs" />
+    <Compile Remove="Migrations\20220804012619_CreateDefaultAdminUser.Designer.cs" />
+    <Compile Remove="Migrations\20220804013125_CreateUserTable.cs" />
+    <Compile Remove="Migrations\20220804013125_CreateUserTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.27">
       <PrivateAssets>all</PrivateAssets>

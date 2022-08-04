@@ -14,6 +14,7 @@ namespace Ubistart_FullStack_Challenge.Data.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new UserMap());
+			modelBuilder.SeedData();
 			base.OnModelCreating(modelBuilder);
 		}
 	}

@@ -45,6 +45,16 @@ namespace Ubistart_FullStack_Challenge.Data.Migrations
                     b.HasKey("IdUser");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            IdUser = 1,
+                            Email = "admin@ubistart.com",
+                            IsAdmin = true,
+                            Name = "admin",
+                            Password = "123456"
+                        });
                 });
 #pragma warning restore 612, 618
         }
