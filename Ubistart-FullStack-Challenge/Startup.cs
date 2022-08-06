@@ -5,9 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Ubistart_FullStack_Challenge.Application;
-using Ubistart_FullStack_Challenge.Application.Interfaces;
+using Ubistart_FullStack_Challenge.Service;
+using Ubistart_FullStack_Challenge.Service.Interfaces;
 using Ubistart_FullStack_Challenge.Data.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Ubistart_FullStack_Challenge.Domain;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Ubistart_FullStack_Challenge
 {
@@ -27,6 +31,24 @@ namespace Ubistart_FullStack_Challenge
 			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
 
 			services.AddScoped<IUserService, UserService>();
+
+			var key = Encoding.ASCII.GetBytes(EnvironmentValues.Secret);
+			services.AddAuthentication(x =>
+			{
+				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			}).AddJwtBearer(x =>
+			{
+				x.RequireHttpsMetadata = false;
+				x.SaveToken = true;
+				x.TokenValidationParameters = new TokenValidationParameters
+				{
+					ValidateIssuerSigningKey = true,
+					IssuerSigningKey = new SymmetricSecurityKey(key),
+					ValidateIssuer = false,
+					ValidateAudience = false
+				};
+			});
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
@@ -57,7 +79,8 @@ namespace Ubistart_FullStack_Challenge
 			}
 
 			app.UseRouting();
-
+			app.UseAuthentication();
+			app.UseAuthorization();
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(

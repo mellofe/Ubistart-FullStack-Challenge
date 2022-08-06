@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Ubistart_FullStack_Challenge.Dao</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ubistart-FullStack-Challenge.Data\Ubistart-FullStack-Challenge.Data.csproj" />
+  </ItemGroup>
+
+</Project>
