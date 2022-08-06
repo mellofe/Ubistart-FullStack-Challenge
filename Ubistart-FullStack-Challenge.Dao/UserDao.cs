@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ubistart_FullStack_Challenge.Dao.Interfaces;
+﻿using Ubistart_FullStack_Challenge.Dao.Interfaces;
 using Ubistart_FullStack_Challenge.Data.Context;
 using Ubistart_FullStack_Challenge.Domain.Entities;
 

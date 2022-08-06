@@ -9,6 +9,11 @@ namespace Ubistart_FullStack_Challenge.Service
 	{
 		private readonly IUserDao UserDao;
 
+		public UserService(IUserDao userDao)
+		{
+			UserDao = userDao;
+		}
+
 		public AuthenticationResponseDto Authenticate(AuthenticationRequestDto authenticationRequestDto)
 		{
 			User user = this.UserDao.Find(x => x.Email.ToLower() == authenticationRequestDto.Email.ToLower()

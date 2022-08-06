@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Ubistart_FullStack_Challenge.Domain;
 using Microsoft.IdentityModel.Tokens;
+using Ubistart_FullStack_Challenge.Dao.Interfaces;
+using Ubistart_FullStack_Challenge.Dao;
 
 namespace Ubistart_FullStack_Challenge
 {
@@ -31,6 +33,8 @@ namespace Ubistart_FullStack_Challenge
 			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
 
 			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<IUserDao, UserDao>();
+
 
 			var key = Encoding.ASCII.GetBytes(EnvironmentValues.Secret);
 			services.AddAuthentication(x =>
