@@ -1,6 +1,9 @@
-﻿namespace Ubistart_FullStack_Challenge.Application.Interfaces
+﻿using Ubistart_FullStack_Challenge.Domain.Dtos;
+
+namespace Ubistart_FullStack_Challenge.Service.Interfaces
 {
 	public interface IUserService
 	{
+		public AuthenticationResponseDto Authenticate(AuthenticationRequestDto authenticationRequestDto);
 	}
 }

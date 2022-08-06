@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ubistart-FullStack-Challeng
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ubistart-FullStack-Challenge.Domain", "Ubistart-FullStack-Challenge.Domain\Ubistart-FullStack-Challenge.Domain.csproj", "{348D270B-1FDE-4BBC-A915-69FA4D5575B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ubistart-FullStack-Challenge.Dao", "Ubistart-FullStack-Challenge.Dao\Ubistart-FullStack-Challenge.Dao.csproj", "{434033A7-E0AF-4260-AC22-2C83B3AB07C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{348D270B-1FDE-4BBC-A915-69FA4D5575B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{348D270B-1FDE-4BBC-A915-69FA4D5575B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{348D270B-1FDE-4BBC-A915-69FA4D5575B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{434033A7-E0AF-4260-AC22-2C83B3AB07C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434033A7-E0AF-4260-AC22-2C83B3AB07C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434033A7-E0AF-4260-AC22-2C83B3AB07C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434033A7-E0AF-4260-AC22-2C83B3AB07C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
