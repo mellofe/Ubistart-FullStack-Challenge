@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ubistart_FullStack_Challenge.Service.Interfaces;
 using Ubistart_FullStack_Challenge.Domain.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ubistart_FullStack_Challenge.Controllers
 {
-	[ApiController]
+	[ApiController, Authorize]
 	[Route("api/[controller]")]
 	public class TaskController : ControllerBase
 	{
