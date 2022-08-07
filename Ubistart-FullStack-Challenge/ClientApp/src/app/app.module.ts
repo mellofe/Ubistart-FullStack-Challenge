@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signup/signup.component';
 import { UserDataService } from './data-services/user.data-service';
+import { TaskRegisterComponent } from './task-register/task-register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { UserDataService } from './data-services/user.data-service';
     LoginComponent,
     SignUpComponent,
     HomeComponent,
+    TaskRegisterComponent,
     CounterComponent,
     FetchDataComponent
   ],
@@ -31,6 +33,7 @@ import { UserDataService } from './data-services/user.data-service';
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'signup', component: SignUpComponent},
       { path: 'home', component: HomeComponent },
+      { path: 'tasks', component: TaskRegisterComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
