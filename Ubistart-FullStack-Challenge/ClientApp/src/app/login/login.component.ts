@@ -12,18 +12,27 @@ import { AuthenticationResponseDto } from '../dtos/AuthenticationResponseDto';
 })
 export class LoginComponent implements OnInit {
   public authenticationRequestDto: AuthenticationRequestDto = new AuthenticationRequestDto();
-  public authenticationResponseDto: AuthenticationResponseDto = new AuthenticationResponseDto();
-  public isAuthenticated = false;
+  static authenticationResponseDto: AuthenticationResponseDto;
+  static isAuthenticated: any;
+  static token: any;
+  static getIsAuthenticated(): any {
+    return this.isAuthenticated;
+  }
+  static getToken(): any {
+    return this.token;
+  }
 
   ngOnInit(): void {
   }
-
+  
   constructor(private userDataService: UserDataService, private router: Router) { }
 
   authenticate() {
     this.userDataService.authenticate(this.authenticationRequestDto).subscribe((authenticationResponseDto:AuthenticationResponseDto) => {
       if (authenticationResponseDto.userDto) {
-        this.isAuthenticated = true;
+        LoginComponent.isAuthenticated = true;
+        LoginComponent.token = authenticationResponseDto.token;
+        console.log(LoginComponent.token);
         this.router.navigate(['/home']);
       } else {
         alert('Usuário/senha invalidos.');

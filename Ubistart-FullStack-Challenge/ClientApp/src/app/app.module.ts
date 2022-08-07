@@ -11,8 +11,11 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signup/signup.component';
-import { UserDataService } from './data-services/user.data-service';
 import { TaskRegisterComponent } from './task-register/task-register.component';
+
+import { Interceptor } from './app.interceptor.module';
+
+import { UserDataService } from './data-services/user.data-service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { TaskRegisterComponent } from './task-register/task-register.component';
       { path: 'tasks', component: TaskRegisterComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ]),
+    Interceptor
   ],
   providers: [UserDataService],
   bootstrap: [AppComponent]
