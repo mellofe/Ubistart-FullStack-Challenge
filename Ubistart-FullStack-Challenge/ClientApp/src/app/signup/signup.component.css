@@ -5,5 +5,10 @@
     margin-top: 10%;
 }
 .cadastro-sub-block{  
+    display:flex; 
+    flex-direction: column;
     width:400px;
+}
+.default-padding{
+    padding-top: 20px;
 }

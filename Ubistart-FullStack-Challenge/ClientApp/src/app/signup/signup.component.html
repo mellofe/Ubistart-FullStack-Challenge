@@ -1,18 +1,18 @@
 <div class="text-center cadastro-block">
     <form class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal" style="padding-top: 20px;">Insira seus dados</h1>
-        <div class="d-flex" style="display:flex; flex-direction: column;" class="cadastro-sub-block"> 
-            <div class="text-spacement-top" style="padding-top: 20px;">
+        <div class="cadastro-sub-block"> 
+            <div class="text-spacement-top default-padding">
                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Nome" [(ngModel)]="userSignUpDto.Name">
             </div>
-            <div class="text-spacement-top" style="padding-top: 20px;">
+            <div class="text-spacement-top default-padding">
                 <input id="Email" name="Name" type="email" class="form-control" placeholder="E-mail" [(ngModel)]="userSignUpDto.Email">
             </div>
-            <div class="text-spacement-top" style="padding-top: 20px;">
+            <div class="text-spacement-top default-padding">
                 <input id="Password" name="Name" type="password" class="form-control" placeholder="Senha" [(ngModel)]="userSignUpDto.Password">
             </div>
         </div>
-        <div class="text-spacement-top" style="padding-top: 20px;">
+        <div class="text-spacement-top default-padding">
             <button class="btn btn-lg btn-dark btn-block" (click)="signup()">Cadastrar</button>
         </div>
     </form>

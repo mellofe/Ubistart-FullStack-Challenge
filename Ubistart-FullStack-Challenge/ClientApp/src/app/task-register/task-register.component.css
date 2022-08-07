@@ -1,9 +1,18 @@
-.cadastro-block{  
+.task-block{  
     display:flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10%;
 }
-.cadastro-sub-block{  
+.task-sub-block{  
+    display:flex; 
+    flex-direction: column;
     width:400px;
+}
+.default-padding{
+    padding-top: 20px;
+}
+.text-align{
+    display:flex; 
+    align-self: flex-start;
 }
