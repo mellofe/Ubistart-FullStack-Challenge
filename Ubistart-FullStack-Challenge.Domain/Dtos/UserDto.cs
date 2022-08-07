@@ -17,5 +17,12 @@ namespace Ubistart_FullStack_Challenge.Domain.Dtos
 			Password = user.Password;
 			IsAdmin = user.IsAdmin;
 		}
+		public UserDto(UserSignUpDto user)
+		{
+			Name = user.Name;
+			Email = user.Email;
+			Password = user.Password;
+			IsAdmin = false;
+		}
 	}
 }

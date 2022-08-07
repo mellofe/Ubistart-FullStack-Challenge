@@ -22,18 +22,6 @@ namespace Ubistart_FullStack_Challenge.Dao
 		{
 			this.context = context;
 		}
-		public TEntity Find(params object[] Keys)
-		{
-			try
-			{
-				return DbSet.Find(Keys);
-			}
-			catch (Exception)
-			{
-
-				throw;
-			}
-		}
 
 		public TEntity Find(Expression<Func<TEntity, bool>> where)
 		{
@@ -48,20 +36,28 @@ namespace Ubistart_FullStack_Challenge.Dao
 			}
 		}
 
-		public TEntity Find(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, object> includes)
+		public TEntity Create(TEntity User)
 		{
 			try
 			{
-				IQueryable<TEntity> _query = DbSet;
-
-				if (includes != null)
-					_query = includes(_query) as IQueryable<TEntity>;
-
-				return _query.SingleOrDefault(predicate);
+				DbSet.Add(User);
+				Save();
+				return User;
 			}
 			catch (Exception)
 			{
 
+				throw;
+			}
+		}
+		public int Save()
+		{
+			try
+			{
+				return context.SaveChanges();
+			}
+			catch (Exception)
+			{
 				throw;
 			}
 		}

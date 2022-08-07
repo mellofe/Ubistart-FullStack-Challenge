@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit {
   constructor(private userDataService: UserDataService, private router: Router) { }
   
   signup(){
-    this.userDataService.signup(this.userSignUpDto).subscribe(response => {
+    this.userDataService.signup(this.userSignUpDto).subscribe((response) => {
       if (response) {
         alert('Cadastro realizado com sucesso.');
         this.router.navigate(['']);

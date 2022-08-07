@@ -19,5 +19,10 @@ namespace Ubistart_FullStack_Challenge.Controllers
 		{
 			return Ok(this.UserService.Authenticate(authenticationRequestDto));
 		}
+		[HttpPost("signup")]
+		public IActionResult SignUp(UserSignUpDto userSignUpDto)
+		{
+			return Ok(this.UserService.SignUp(new UserDto(userSignUpDto)));
+		}
 	}
 }
