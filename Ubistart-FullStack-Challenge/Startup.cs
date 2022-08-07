@@ -33,7 +33,10 @@ namespace Ubistart_FullStack_Challenge
 			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
 
 			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<ITaskService, TaskService>();
+
 			services.AddScoped<IUserDao, UserDao>();
+			services.AddScoped<ITaskDao, TaskDao>();
 
 
 			var key = Encoding.ASCII.GetBytes(EnvironmentValues.Secret);

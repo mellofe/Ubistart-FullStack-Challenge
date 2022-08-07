@@ -17,8 +17,8 @@ namespace Ubistart_FullStack_Challenge.Service
 
 		public AuthenticationResponseDto Authenticate(AuthenticationRequestDto authenticationRequestDto)
 		{
-			User user = this.UserDao.Find(x => x.Email.ToLower() == authenticationRequestDto.Email.ToLower()
-											&& x.Password.ToLower() == authenticationRequestDto.Password.ToLower());
+			User user = FindUser(authenticationRequestDto.Email, authenticationRequestDto.Password);
+
 			if (user == null)
 			{
 				throw new System.Exception("");
@@ -33,6 +33,18 @@ namespace Ubistart_FullStack_Challenge.Service
 			User user = new User(userDto);
 			this.UserDao.Create(user);
 			return true;
+		}
+		public User FindUser(string email, string password)
+		{
+			User user = this.UserDao.Find(x => x.Email.ToLower() == email.ToLower()
+											&& x.Password.ToLower() == password.ToLower());
+			return user;
+		}
+		public User FindUserById(int id)
+		{
+			User user = this.UserDao.Find(x => x.IdUser == id);
+
+			return user;
 		}
 	}
 }

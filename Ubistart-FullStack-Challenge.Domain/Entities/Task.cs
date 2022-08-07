@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ubistart_FullStack_Challenge.Domain.Dtos;
 
 namespace Ubistart_FullStack_Challenge.Domain.Entities
 {
@@ -17,5 +18,17 @@ namespace Ubistart_FullStack_Challenge.Domain.Entities
 		[ForeignKey("UserFK")]
 		public User User { get; set; }
 		public int UserFK { get; set; }
+		public Task(TaskDto task)
+		{
+			IdTask = task.IdTask;
+			InsertionDate = task.InsertionDate;
+			Description = task.Description;
+			Deadline = task.Deadline;
+			FinishDate = task.FinishDate;
+			EditDate = task.EditDate;
+			User = task.User;
+			UserFK = task.UserFK;
+		}
+		public Task() { }
 	}
 }

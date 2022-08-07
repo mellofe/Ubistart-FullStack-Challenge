@@ -36,13 +36,13 @@ namespace Ubistart_FullStack_Challenge.Dao
 			}
 		}
 
-		public TEntity Create(TEntity User)
+		public TEntity Create(TEntity entity)
 		{
 			try
 			{
-				DbSet.Add(User);
+				DbSet.Add(entity);
 				Save();
-				return User;
+				return entity;
 			}
 			catch (Exception)
 			{
