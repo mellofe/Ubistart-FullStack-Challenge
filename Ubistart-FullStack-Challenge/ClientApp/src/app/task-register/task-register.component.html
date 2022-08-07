@@ -1,15 +1,17 @@
-<div class="text-center cadastro-block">
+<div class="text-center task-block">
     <form class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal" style="padding-top: 20px;">Insira os dados da sua tarefa</h1>
-        <div class="d-flex" style="display:flex; flex-direction: column;" class="cadastro-sub-block"> 
-            <div class="text-spacement-top" style="padding-top: 20px;">
-                <input id="Description" name="Description" type="text" class="form-control" placeholder="Descrição" [(ngModel)]="taskRegisterDto.Description">
+        <h1 class="h3 mb-3 font-weight-normal default-padding">Insira os dados da sua tarefa</h1>
+        <div class="task-sub-block"> 
+            <div class="text-spacement-top default-padding">
+                <span class="text-align">Descrição</span>
+                <input id="Description" name="Description" type="text" class="form-control" [(ngModel)]="taskRegisterDto.Description">
             </div>
-            <div class="text-spacement-top" style="padding-top: 20px;">
-                <input id="Deadline" name="Deadline" type="date" class="form-control" placeholder="Prazo" [(ngModel)]="taskRegisterDto.Deadline">
+            <div class="text-spacement-top default-padding">
+                <span class="text-align">Prazo</span>
+                <input id="Deadline" name="Deadline" type="date" class="form-control" [(ngModel)]="taskRegisterDto.Deadline">
             </div>
         </div>
-        <div class="text-spacement-top" style="padding-top: 20px;">
+        <div class="text-spacement-top default-padding">
             <button class="btn btn-lg btn-dark btn-block" (click)="taskRegister()">Cadastrar tarefa</button>
         </div>
     </form>

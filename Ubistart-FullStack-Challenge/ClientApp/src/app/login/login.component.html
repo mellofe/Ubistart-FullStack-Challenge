@@ -1,17 +1,17 @@
 <div class="login-block text-center">
   <img src="../../assets/images/logo.png" class="logo">
   <form class="form-signin">      
-      <h1 class="h3 mb-3 font-weight-normal" style="padding-top: 20px;">Acessar minha conta</h1>
-      <div class="text-center" style="width: 400px; padding-top: 20px;">
+      <h1 class="h3 mb-3 font-weight-normal default-padding">Acessar minha conta</h1>
+      <div class="text-center default-padding">
           <div class="text-spacement-top">
               <input id="Email" name = "Email" type="email" class="form-control" placeholder="E-mail" [(ngModel)]="authenticationRequestDto.Email">
           </div>
-          <div class="text-spacement-top" style="padding-top: 20px;">
+          <div class="text-spacement-top default-padding">
               <input id="Password" name = "Senha" type="password" class="form-control" placeholder="Senha" [(ngModel)]="authenticationRequestDto.Password">
           </div>
       </div>
-      <div class="text-spacement-top" style="padding-top: 20px;">
-          <a class="btn btn-lg btn-dark btn-block" (click)="authenticate()" style="width:400px; ">Entrar</a>
+      <div class="text-spacement-top default-padding">
+          <a class="btn btn-lg btn-dark btn-block button" (click)="authenticate()">Entrar</a>
       </div>
       <div class="text-spacement-top">
           <a class="nav-link text-options text-dark" [routerLink]="['/signup']">Cadastre-se</a>
