@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20220804012619_CreateDefaultAdminUser.Designer.cs" />
     <Compile Remove="Migrations\20220804013125_CreateUserTable.cs" />
     <Compile Remove="Migrations\20220804013125_CreateUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20220807165649_CreateTaskTable.cs" />
+    <Compile Remove="Migrations\20220807165649_CreateTaskTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
