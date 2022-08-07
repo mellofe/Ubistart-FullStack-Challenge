@@ -4,17 +4,18 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class UserDataService {
 
-  module: string = '/api/user';
+  userModule: string = '/api/user';
+  taskModule: string = '/api/task';
 
   constructor(private http: HttpClient) { }
 
   authenticate(data: any) {
-    return this.http.post(this.module + '/authenticate', data);
+    return this.http.post(this.userModule + '/authenticate', data);
   }
   signup(data: any){
-    return this.http.post(this.module + '/signup', data);
+    return this.http.post(this.userModule + '/signup', data);
   }
   taskRegister(data: any){
-    return this.http.post(this.module + '/taskregister', data);
+    return this.http.post(this.taskModule + '/taskregister', data);
   }
 }
