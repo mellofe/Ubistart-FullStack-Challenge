@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './signup/signup.component';
 import { UserDataService } from './data-services/user.data-service';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { UserDataService } from './data-services/user.data-service';
     AppComponent,
     NavMenuComponent,
     LoginComponent,
+    SignUpComponent,
     HomeComponent,
     CounterComponent,
     FetchDataComponent
@@ -27,6 +29,7 @@ import { UserDataService } from './data-services/user.data-service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: 'signup', component: SignUpComponent},
       { path: 'home', component: HomeComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },

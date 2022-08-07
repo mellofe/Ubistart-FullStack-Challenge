@@ -11,4 +11,7 @@ export class UserDataService {
   authenticate(data: any) {
     return this.http.post(this.module + '/authenticate', data);
   }
+  signup(data: any){
+    return this.http.post(this.module + '/signup', data);
+  }
 }
