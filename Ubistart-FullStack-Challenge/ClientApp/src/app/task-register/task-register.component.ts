@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserDataService } from '../data-services/user.data-service';
 
 import { TaskRegisterDto } from '../dtos/TaskRegisterDto';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-task-register',
@@ -12,9 +14,13 @@ export class TaskRegisterComponent implements OnInit {
   public taskRegisterDto: TaskRegisterDto = new TaskRegisterDto();
 
   ngOnInit(): void {
+    if(!LoginComponent.getIsAuthenticated()){
+      this.router.navigate(['']);
+      alert('Faça login para acessar essa página.');
+    }
   }
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(private userDataService: UserDataService, private router: Router) { }
   
   taskRegister(){
     this.userDataService.taskRegister(this.taskRegisterDto).subscribe((response) => {
