@@ -4,6 +4,6 @@ namespace Ubistart_FullStack_Challenge.Service.Interfaces
 {
 	public interface ITaskService
 	{
-		public bool TaskRegister(TaskRegisterDto task);
+		public bool TaskRegister(TaskRegisterDto task, int userFk);
 	}
 }

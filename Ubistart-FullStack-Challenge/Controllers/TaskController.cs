@@ -2,6 +2,8 @@
 using Ubistart_FullStack_Challenge.Service.Interfaces;
 using Ubistart_FullStack_Challenge.Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Ubistart_FullStack_Challenge.Service;
 
 namespace Ubistart_FullStack_Challenge.Controllers
 {
@@ -18,7 +20,8 @@ namespace Ubistart_FullStack_Challenge.Controllers
 		[HttpPost("taskregister")]
 		public IActionResult TaskRegister(TaskRegisterDto taskRegisterDto)
 		{
-			return Ok(this.TaskService.TaskRegister(taskRegisterDto));
+			int userFk = int.Parse(TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier));
+			return Ok(this.TaskService.TaskRegister(taskRegisterDto, userFk));
 		}
 	}
 }
