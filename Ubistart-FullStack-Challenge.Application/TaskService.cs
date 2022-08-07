@@ -9,22 +9,20 @@ namespace Ubistart_FullStack_Challenge.Service
 	public class TaskService : ITaskService
 	{
 		private readonly ITaskDao TaskDao;
-		private readonly IUserDao UserDao;
+		public UserService UserService;
 
-
-		public TaskService(ITaskDao taskDao)
+		public TaskService(ITaskDao taskDao, IUserDao userDao)
 		{
 			TaskDao = taskDao;
-
+			UserService = new UserService(userDao);
 		}
 		public bool TaskRegister(TaskRegisterDto taskRegisterDto)
 		{
-			/*int userFk = 1;
-			User user = new User();
-			//User user = this.UserDao.Find(x => x.IdUser == userFk);
+			int userFk = 1;
+			User user = this.UserService.FindUserById(userFk);
 			TaskDto taskDto = new TaskDto(DateTime.Now, taskRegisterDto.Description, taskRegisterDto.Deadline, user, userFk);
 			Task task = new Task(taskDto);
-			this.TaskDao.Create(task);*/
+			this.TaskDao.Create(task);
 			return true;
 		}
 	}
