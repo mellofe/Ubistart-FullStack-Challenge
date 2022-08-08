@@ -14,15 +14,17 @@ import { faPencil, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 	private isEditingTask = false;
 	private Tasks: TaskDto[];
 	private DisplayTasks: TaskDisplayDto[] = [];
 	private editingTask: TaskDisplayDto;
-	defaultDate: Date = new Date("0001-01-01T00:00:00");
-	faPencil = faPencil;
-	faCheck = faCheck;
-	faTimes = faTimes;
+	readonly defaultDate  = new Date("0001-01-01T00:00:00");
+
+	readonly faPencil = faPencil;
+	readonly faCheck = faCheck;
+	readonly faTimes = faTimes;
 
 	ngOnInit(): void {
 		if (!LoginComponent.getIsAuthenticated()) {
@@ -33,29 +35,6 @@ export class HomeComponent implements OnInit {
 		}
 	}
 	constructor(private userDataService: UserDataService, private router: Router) {
-	}
-
-	updateDates() {
-		let dateNow: Date = new Date();
-		this.Tasks.forEach(task => {
-			let status: string;
-			let deadline = new Date(task.deadline);
-			let finishDate = new Date(task.finishDate);
-
-			if (!(finishDate.toDateString() === this.defaultDate.toDateString())) {
-				status = "Tarefa concluida."
-			} else if (deadline < dateNow) {
-				status = "Tarefa atrasada."
-			} else {
-				status = "Tarefa em andamento."
-			}
-
-			this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));
-		});
-	}
-
-	formateDate(date: Date) {
-		return date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 	}
 
 	editTaskDetails(task: TaskDisplayDto) {
@@ -89,7 +68,7 @@ export class HomeComponent implements OnInit {
 		this.isEditingTask = false;
 	}
 
-	getUserTasks() {
+	private getUserTasks() {
 		this.userDataService.getUserTasks().subscribe((result) => {
 			if (result) {
 				this.Tasks = result;
@@ -103,7 +82,7 @@ export class HomeComponent implements OnInit {
 		})
 	}
 
-	putEditedTask(editedTask: TaskDto) {
+	private putEditedTask(editedTask: TaskDto) {
 		this.userDataService.editTask(editedTask).subscribe(data => {
 			if (data) {
 				alert('Tarefa atualizada com sucesso.');
@@ -114,6 +93,29 @@ export class HomeComponent implements OnInit {
 			console.log(error);
 			alert('Falha na atualização da tarefa.');
 		})
+	}
+
+	private updateDates() {
+		let dateNow: Date = new Date();
+		this.Tasks.forEach(task => {
+			let status: string;
+			let deadline = new Date(task.deadline);
+			let finishDate = new Date(task.finishDate);
+
+			if (!(finishDate.toDateString() === this.defaultDate.toDateString())) {
+				status = "Tarefa concluida."
+			} else if (deadline < dateNow) {
+				status = "Tarefa atrasada."
+			} else {
+				status = "Tarefa em andamento."
+			}
+
+			this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));
+		});
+	}
+
+	private formateDate(date: Date) {
+		return date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 	}
 
 }
