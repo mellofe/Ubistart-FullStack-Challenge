@@ -7,6 +7,8 @@ import { UserDataService } from '../data-services/user.data-service';
 import { TaskDto } from '../dtos/TaskDto';
 import { TaskDisplayDto } from '../dtos/TaskDisplayDto';
 
+import { faPencil, faCheck } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,6 +17,8 @@ import { TaskDisplayDto } from '../dtos/TaskDisplayDto';
 export class HomeComponent implements OnInit {
   public Tasks: TaskDto[];
   public DisplayTasks: TaskDisplayDto[] = [];
+  faPencil = faPencil;
+  faCheck = faCheck
 
   ngOnInit(): void {
     if(!LoginComponent.getIsAuthenticated()){

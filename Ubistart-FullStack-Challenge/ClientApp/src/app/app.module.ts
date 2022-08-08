@@ -12,6 +12,7 @@ import { SignUpComponent } from './signup/signup.component';
 import { TaskRegisterComponent } from './task-register/task-register.component';
 
 import { Interceptor } from './app.interceptor.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { UserDataService } from './data-services/user.data-service';
 
@@ -34,7 +35,8 @@ import { UserDataService } from './data-services/user.data-service';
       { path: 'home', component: HomeComponent },
       { path: 'tasks', component: TaskRegisterComponent }
     ]),
-    Interceptor
+    Interceptor,
+    FontAwesomeModule
   ],
   providers: [UserDataService],
   bootstrap: [AppComponent]
