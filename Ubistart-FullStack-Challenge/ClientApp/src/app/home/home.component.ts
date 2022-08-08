@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
 	private editTaskDetails(task: TaskDisplayDto) {
 		if(task.status === "Tarefa concluida."){
-			alert('Não é permitido alterar uma tarefa concluida');
+			alert('Não é permitido alterar uma tarefa concluida.');
 			return;
 		}
 		this.isEditingTask = true;
@@ -47,6 +47,10 @@ export class HomeComponent implements OnInit {
 	}
 
 	private setTaskDone(task: TaskDisplayDto) {
+		if(task.status === "Tarefa concluida."){
+			alert('Tarefa já foi concluida.');
+			return;
+		}
 		let finishedTask: TaskDto = new TaskDto(task);
 		finishedTask.finishDate = new Date();
 
