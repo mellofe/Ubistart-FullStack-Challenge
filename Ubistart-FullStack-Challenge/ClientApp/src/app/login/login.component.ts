@@ -11,14 +11,17 @@ import { AuthenticationResponseDto } from '../dtos/AuthenticationResponseDto';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public authenticationRequestDto: AuthenticationRequestDto = new AuthenticationRequestDto();
-  static authenticationResponseDto: AuthenticationResponseDto;
-  static isAuthenticated: any;
-  static token: any;
-  static getIsAuthenticated(): any {
+  private authenticationRequestDto: AuthenticationRequestDto = new AuthenticationRequestDto();
+  private static isAuthenticated: boolean;
+  private static token: string;
+
+  static getIsAuthenticated(): boolean {
     return this.isAuthenticated;
   }
-  static getToken(): any {
+  static setIsAuthenticated(isAuthenticated: boolean){
+    LoginComponent.isAuthenticated = isAuthenticated;
+  }
+  static getToken(): string {
     return this.token;
   }
 
@@ -30,11 +33,11 @@ export class LoginComponent implements OnInit {
   
   constructor(private userDataService: UserDataService, private router: Router) { }
 
-  authenticate() {
-    this.userDataService.authenticate(this.authenticationRequestDto).subscribe((authenticationResponseDto:AuthenticationResponseDto) => {
-      if (authenticationResponseDto.userDto) {
+  private authenticate() {
+    this.userDataService.authenticate(this.authenticationRequestDto).subscribe((result: AuthenticationResponseDto) => {
+      if (result) {
         LoginComponent.isAuthenticated = true;
-        LoginComponent.token = authenticationResponseDto.token;
+        LoginComponent.token = result.token;
         this.router.navigate(['/home']);
       } else {
         alert('Usuário/senha invalidos.');

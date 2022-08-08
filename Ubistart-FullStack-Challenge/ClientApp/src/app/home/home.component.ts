@@ -14,15 +14,17 @@ import { faPencil, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 	private isEditingTask = false;
 	private Tasks: TaskDto[];
 	private DisplayTasks: TaskDisplayDto[] = [];
 	private editingTask: TaskDisplayDto;
-	defaultDate: Date = new Date("0001-01-01T00:00:00");
-	faPencil = faPencil;
-	faCheck = faCheck;
-	faTimes = faTimes;
+	readonly defaultDate  = new Date("0001-01-01T00:00:00");
+
+	readonly faPencil = faPencil;
+	readonly faCheck = faCheck;
+	readonly faTimes = faTimes;
 
 	ngOnInit(): void {
 		if (!LoginComponent.getIsAuthenticated()) {
@@ -35,7 +37,69 @@ export class HomeComponent implements OnInit {
 	constructor(private userDataService: UserDataService, private router: Router) {
 	}
 
-	updateDates() {
+	private editTaskDetails(task: TaskDisplayDto) {
+		if(task.status === "Tarefa concluida."){
+			alert('Não é permitido alterar uma tarefa concluida.');
+			return;
+		}
+		this.isEditingTask = true;
+		this.editingTask = task;
+	}
+
+	private setTaskDone(task: TaskDisplayDto) {
+		if(task.status === "Tarefa concluida."){
+			alert('Tarefa já foi concluida.');
+			return;
+		}
+		let finishedTask: TaskDto = new TaskDto(task);
+		finishedTask.finishDate = new Date();
+
+		this.putEditedTask(finishedTask);
+		this.router.navigate(['']);
+	}
+
+	private finishTaskEditing() {
+		let editedTask: TaskDto = new TaskDto(this.editingTask);
+		editedTask.editDate = new Date();
+
+		this.putEditedTask(editedTask);
+
+		this.isEditingTask = false;
+		this.router.navigate(['']);
+	}
+
+	private exitTaskEdit() {
+		this.isEditingTask = false;
+	}
+
+	private getUserTasks() {
+		this.userDataService.getUserTasks().subscribe((result) => {
+			if (result) {
+				this.Tasks = result;
+				this.updateDates();
+			} else {
+				alert('Falha na busca de tarefas cadastradas pelo usuário.');
+			}
+		}, error => {
+			console.log(error);
+			alert('Falha na busca de tarefas cadastradas pelo usuário.');
+		})
+	}
+
+	private putEditedTask(editedTask: TaskDto) {
+		this.userDataService.editTask(editedTask).subscribe(data => {
+			if (data) {
+				alert('Tarefa atualizada com sucesso.');
+			} else {
+				alert('Falha na atualização da tarefa.');
+			}
+		}, error => {
+			console.log(error);
+			alert('Falha na atualização da tarefa.');
+		})
+	}
+
+	private updateDates() {
 		let dateNow: Date = new Date();
 		this.Tasks.forEach(task => {
 			let status: string;
@@ -54,66 +118,8 @@ export class HomeComponent implements OnInit {
 		});
 	}
 
-	formateDate(date: Date) {
+	private formateDate(date: Date) {
 		return date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-	}
-
-	editTaskDetails(task: TaskDisplayDto) {
-		if(task.status === "Tarefa concluida."){
-			alert('Não é permitido alterar uma tarefa concluida');
-			return;
-		}
-		this.isEditingTask = true;
-		this.editingTask = task;
-	}
-
-	setTaskDone(task: TaskDisplayDto) {
-		let finishedTask: TaskDto = new TaskDto(task);
-		finishedTask.finishDate = new Date();
-
-		this.putEditedTask(finishedTask);
-		this.router.navigate(['']);
-	}
-
-	finishTaskEditing() {
-		let editedTask: TaskDto = new TaskDto(this.editingTask);
-		editedTask.editDate = new Date();
-
-		this.putEditedTask(editedTask);
-
-		this.isEditingTask = false;
-		this.router.navigate(['']);
-	}
-
-	exitTaskEdit() {
-		this.isEditingTask = false;
-	}
-
-	getUserTasks() {
-		this.userDataService.getUserTasks().subscribe((result) => {
-			if (result) {
-				this.Tasks = result;
-				this.updateDates();
-			} else {
-				alert('Falha na busca de tarefas cadastradas pelo usuário.');
-			}
-		}, error => {
-			console.log(error);
-			alert('Falha na busca de tarefas cadastradas pelo usuário.');
-		})
-	}
-
-	putEditedTask(editedTask: TaskDto) {
-		this.userDataService.editTask(editedTask).subscribe(data => {
-			if (data) {
-				alert('Tarefa atualizada com sucesso.');
-			} else {
-				alert('Falha na atualização da tarefa.');
-			}
-		}, error => {
-			console.log(error);
-			alert('Falha na atualização da tarefa.');
-		})
 	}
 
 }

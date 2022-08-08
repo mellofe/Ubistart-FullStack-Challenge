@@ -10,24 +10,24 @@ import { UserSignUpDto } from '../dtos/UserSignUpDto';
   styleUrls: ['./signup.component.css']
 })
 export class SignUpComponent implements OnInit {
-  public userSignUpDto: UserSignUpDto = new UserSignUpDto();
+  private userSignUpDto: UserSignUpDto = new UserSignUpDto();
 
   ngOnInit(): void {
   }
 
   constructor(private userDataService: UserDataService, private router: Router) { }
   
-  signup(){
-    this.userDataService.signup(this.userSignUpDto).subscribe((response) => {
-      if (response) {
+  private signup(){
+    this.userDataService.signup(this.userSignUpDto).subscribe((result) => {
+      if (result) {
         alert('Cadastro realizado com sucesso.');
         this.router.navigate(['']);
       } else {
-        alert('Falha no cadastro.');
+        alert('Falha no cadastro de usuário.');
       }      
     }, error => {
       console.log(error);
-        alert('Falha no cadastro.');
+        alert('Falha no cadastro de usuário.');
     })
   }
 }

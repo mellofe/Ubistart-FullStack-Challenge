@@ -11,7 +11,7 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./task-register.component.css']
 })
 export class TaskRegisterComponent implements OnInit {
-  public taskRegisterDto: TaskRegisterDto = new TaskRegisterDto();
+  private taskRegisterDto: TaskRegisterDto = new TaskRegisterDto();
 
   ngOnInit(): void {
     if(!LoginComponent.getIsAuthenticated()){
@@ -22,9 +22,9 @@ export class TaskRegisterComponent implements OnInit {
 
   constructor(private userDataService: UserDataService, private router: Router) { }
   
-  taskRegister(){
-    this.userDataService.taskRegister(this.taskRegisterDto).subscribe((response) => {
-      if (response) {
+  private taskRegister(){
+    this.userDataService.taskRegister(this.taskRegisterDto).subscribe((result) => {
+      if (result) {
         alert('Cadastro de tarefa realizado com sucesso.');
       } else {
         alert('Falha no cadastro da tarefa.');

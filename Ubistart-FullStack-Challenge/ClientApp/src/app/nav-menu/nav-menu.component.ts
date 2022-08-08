@@ -8,20 +8,11 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
-
   constructor(private router: Router) {
 	}
 
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
-  logout(){
-    LoginComponent.isAuthenticated = false;
+  private logout(){
+    LoginComponent.setIsAuthenticated(false);
     this.router.navigate(['']);
   }
 }
