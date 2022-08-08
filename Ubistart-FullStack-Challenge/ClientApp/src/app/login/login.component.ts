@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(LoginComponent.getIsAuthenticated()){
+      this.router.navigate(['/home']);
+    }
   }
   
   constructor(private userDataService: UserDataService, private router: Router) { }

@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
+import { TaskDto } from "../dtos/TaskDto";
+
 @Injectable()
 export class UserDataService {
 
@@ -17,5 +19,8 @@ export class UserDataService {
   }
   taskRegister(data: any){
     return this.http.post(this.taskModule + '/taskregister', data);
+  }
+  getUserTasks(){
+    return this.http.get<TaskDto[]>(this.taskModule + '/usertasks');
   }
 }
