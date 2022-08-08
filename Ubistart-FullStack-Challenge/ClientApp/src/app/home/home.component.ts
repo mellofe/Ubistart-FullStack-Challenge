@@ -36,18 +36,7 @@ export class HomeComponent implements OnInit {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
     })
   }
-  updateDates(){
-    let defaultDate = "0001-01-01T00:00:00";
-    this.Tasks.forEach(function (task){
-      if(task.editDate === defaultDate){
-        task.editDate = "-";
-      }
-      if(task.finishDate === defaultDate){
-        task.finishDate = "-";
-      }
-    });
-  }
-  
+    
   updateDates(){
     let date: Date;
     let dateNow: Date = new Date();
