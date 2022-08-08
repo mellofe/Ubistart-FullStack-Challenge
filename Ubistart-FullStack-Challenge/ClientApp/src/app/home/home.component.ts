@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
 
 	updateDates() {
 		let dateNow: Date = new Date();
-		let status: string;
 		this.Tasks.forEach(task => {
+			let status: string;
 			let deadline = new Date(task.deadline);
 			let finishDate = new Date(task.finishDate);
 
@@ -59,10 +59,10 @@ export class HomeComponent implements OnInit {
 	}
 
 	editTaskDetails(task: TaskDisplayDto) {
-    if(task.status === "Tarefa concluida."){
-      alert('Não é permitido alterar uma tarefa concluida');
-      return;
-    }
+		if(task.status === "Tarefa concluida."){
+			alert('Não é permitido alterar uma tarefa concluida');
+			return;
+		}
 		this.isEditingTask = true;
 		this.editingTask = task;
 	}
