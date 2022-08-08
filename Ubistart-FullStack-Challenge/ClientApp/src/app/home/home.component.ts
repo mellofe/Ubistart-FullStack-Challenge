@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { UserDataService } from '../data-services/user.data-service';
 import { TaskDto } from '../dtos/TaskDto';
+import { TaskDisplayDto } from '../dtos/TaskDisplayDto';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { TaskDto } from '../dtos/TaskDto';
 })
 export class HomeComponent implements OnInit {
   public Tasks: TaskDto[];
+  public DisplayTasks: TaskDisplayDto[] = [];
 
   ngOnInit(): void {
     if(!LoginComponent.getIsAuthenticated()){
@@ -25,9 +27,7 @@ export class HomeComponent implements OnInit {
     this.userDataService.getUserTasks().subscribe((result) => {
       if (result) {
         this.Tasks = result;
-        console.log(this.Tasks);
-        this.updateDates();
-        console.log(this.Tasks);
+        this.DisplayTasks = this.updateDates();
       } else {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
       }
@@ -46,6 +46,23 @@ export class HomeComponent implements OnInit {
         task.finishDate = "-";
       }
     });
+  }
+  
+  updateDates(){
+    let date: Date;
+    let dateNow: Date = new Date();
+    let DisplayTasksArray: TaskDisplayDto[] = [];
+    let status: string;
+    this.Tasks.forEach(function (task){
+      if(task.deadline < dateNow){
+        status = "A tarefa está atrasada."
+      } else{
+        status = "A tarefa está em dia."
+      }
+      date = new Date(task.deadline);
+      DisplayTasksArray.push(new TaskDisplayDto(task.description, date.toLocaleDateString('pt-BR', {timeZone: 'UTC'}), status));
+    });
+    return DisplayTasksArray;
   }
   
 }
