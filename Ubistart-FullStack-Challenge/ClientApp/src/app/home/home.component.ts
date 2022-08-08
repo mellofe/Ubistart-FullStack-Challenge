@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   private Tasks: TaskDto[];
   private DisplayTasks: TaskDisplayDto[] = [];
   private editingTask: TaskDisplayDto;
+  defaultDate: Date = new Date("0001-01-01T00:00:00");
   faPencil = faPencil;
   faCheck = faCheck;
   faTimes = faTimes;
@@ -39,11 +40,16 @@ export class HomeComponent implements OnInit {
     let status: string;
     this.Tasks.forEach(task => {
       let deadline = new Date(task.deadline);
-      if(deadline < dateNow){
+      let finishDate = new Date(task.finishDate);
+      
+      if(!(finishDate.toDateString() === this.defaultDate.toDateString())){
+        status = "Tarefa concluida."
+      } else if(deadline < dateNow){
         status = "Tarefa atrasada."
       } else{
         status = "Tarefa em andamento."
       }
+
       this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));
     });
   }
@@ -55,6 +61,14 @@ export class HomeComponent implements OnInit {
   editTaskDetails(task: TaskDisplayDto){
     this.isEditingTask = true;
     this.editingTask = task;
+  }
+
+  setTaskDone(task: TaskDisplayDto){
+    let finishedTask: TaskDto = new TaskDto(task);
+    finishedTask.finishDate = new Date();
+
+    this.putEditedTask(finishedTask);
+    this.router.navigate(['']);
   }
 
   finishTaskEditing(){
@@ -84,10 +98,10 @@ export class HomeComponent implements OnInit {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
     })
   }
-  
+
   putEditedTask(editedTask: TaskDto){
     this.userDataService.editTask(editedTask).subscribe(data => {
-      if (data) {
+      if (!data) {
         alert('Tarefa atualizada com sucesso.');
       } else {
         alert('Falha na atualização da tarefa.');

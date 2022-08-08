@@ -18,7 +18,9 @@
                     <a class="btn" (click)="editTaskDetails(task)" style="margin-right: 30px;">
                         <fa-icon class="fa-lg" [icon]="faPencil"></fa-icon>
                     </a>
-                    <fa-icon class="fa-lg" [icon]="faCheck"></fa-icon>
+                    <a class="btn" (click)="setTaskDone(task)">
+                        <fa-icon class="fa-lg" [icon]="faCheck"></fa-icon>
+                    </a>
                 </td>
             </tr>
         </tbody>
