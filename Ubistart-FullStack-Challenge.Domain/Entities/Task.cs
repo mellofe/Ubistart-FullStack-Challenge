@@ -18,7 +18,7 @@ namespace Ubistart_FullStack_Challenge.Domain.Entities
 		[ForeignKey("UserFK")]
 		public User User { get; set; }
 		public int UserFK { get; set; }
-		public Task(TaskDto task)
+		public Task(TaskDto task, User user, int userFk)
 		{
 			IdTask = task.IdTask;
 			InsertionDate = task.InsertionDate;
@@ -26,8 +26,8 @@ namespace Ubistart_FullStack_Challenge.Domain.Entities
 			Deadline = task.Deadline;
 			FinishDate = task.FinishDate;
 			EditDate = task.EditDate;
-			User = task.User;
-			UserFK = task.UserFK;
+			User = user;
+			UserFK = userFk;
 		}
 		public Task() { }
 	}

@@ -22,8 +22,8 @@ namespace Ubistart_FullStack_Challenge.Service
 		public bool TaskRegister(TaskRegisterDto taskRegisterDto, int userFk)
 		{
 			User user = this.UserService.FindUserById(userFk);
-			TaskDto taskDto = new TaskDto(DateTime.Now, taskRegisterDto.Description, taskRegisterDto.Deadline, user, userFk);
-			Task task = new Task(taskDto);
+			TaskDto taskDto = new TaskDto(DateTime.Now, taskRegisterDto.Description, taskRegisterDto.Deadline);
+			Task task = new Task(taskDto, user, userFk);
 			this.TaskDao.Create(task);
 			return true;
 		}

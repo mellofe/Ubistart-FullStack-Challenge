@@ -11,15 +11,11 @@ namespace Ubistart_FullStack_Challenge.Domain.Dtos
 		public DateTime Deadline { get; set; }
 		public DateTime FinishDate { get; set; }
 		public DateTime EditDate { get; set; }
-		public User User { get; set; }
-		public int UserFK { get; set; }
-		public TaskDto(DateTime insertionDate, string description, DateTime deadline, User user, int userFK)
+		public TaskDto(DateTime insertionDate, string description, DateTime deadline)
 		{
 			InsertionDate = insertionDate;
 			Description = description;
 			Deadline = deadline;
-			User = user;
-			UserFK = userFK;
 		}
 	}
 }
