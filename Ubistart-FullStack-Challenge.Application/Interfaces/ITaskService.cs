@@ -7,5 +7,6 @@ namespace Ubistart_FullStack_Challenge.Service.Interfaces
 	{
 		public bool TaskRegister(TaskRegisterDto task, int userFk);
 		public List<TaskDto> GetUserTasks(int userFk);
+		public bool PutEditedTask(TaskDto taskDto);
 	}
 }

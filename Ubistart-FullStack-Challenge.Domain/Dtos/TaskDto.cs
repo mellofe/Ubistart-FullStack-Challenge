@@ -1,5 +1,4 @@
 ﻿using System;
-using Ubistart_FullStack_Challenge.Domain.Entities;
 
 namespace Ubistart_FullStack_Challenge.Domain.Dtos
 {
@@ -17,5 +16,6 @@ namespace Ubistart_FullStack_Challenge.Domain.Dtos
 			Description = description;
 			Deadline = deadline;
 		}
+		public TaskDto() { }
 	}
 }

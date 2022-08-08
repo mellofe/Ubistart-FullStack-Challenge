@@ -30,5 +30,10 @@ namespace Ubistart_FullStack_Challenge.Controllers
 			int userFk = int.Parse(TokenService.GetValueFromClaim(HttpContext.User.Identity, ClaimTypes.NameIdentifier));
 			return Ok(this.TaskService.GetUserTasks(userFk));
 		}
+		[HttpPut("edittask")]
+		public IActionResult PutEditedTask(TaskDto taskDto)
+		{
+			return Ok(this.TaskService.PutEditedTask(taskDto));
+		}
 	}
 }

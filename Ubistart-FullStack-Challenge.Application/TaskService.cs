@@ -36,5 +36,25 @@ namespace Ubistart_FullStack_Challenge.Service
 			List<TaskDto> tasksList = Mapper.Map<List<TaskDto>>(tasks);
 			return tasksList;
 		}
+		public bool PutEditedTask(TaskDto taskDto)
+		{
+			if (taskDto == null || taskDto.IdTask == default)
+			{
+				throw new Exception("Task invalida");
+			}
+
+			Task task = this.TaskDao.Find(x => x.IdTask == taskDto.IdTask);
+			int userFk = task.UserFK;
+			if (task == null)
+			{
+				return false;
+			}
+			task = Mapper.Map<Task>(taskDto);
+			task.UserFK = userFk;
+
+			this.TaskDao.Update(task);
+
+			return true;
+		}
 	}
 }
