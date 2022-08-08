@@ -1,0 +1,9 @@
+.task-block{  
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+.default-padding{
+    padding-top: 20px;
+}

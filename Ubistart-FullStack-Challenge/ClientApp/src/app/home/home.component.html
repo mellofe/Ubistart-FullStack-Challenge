@@ -1,0 +1,23 @@
+<div class="text-center task-block">
+    <h1 class="h3 mb-3 font-weight-normal">Lista de Tarefas</h1>
+    <table class="table table-striped" aria-labelledby="tableLabel">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data de criação</th>
+                <th>Prazo</th>
+                <th>Data de edição</th>
+                <th>Data de finalização</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks">
+                <td>{{ task.Description }}</td>
+                <td>{{ task.InsertionDate }}</td>
+                <td>{{ task.Deadline }}</td>
+                <td>{{ task.EditDate }}</td>
+                <td>{{ task.FinishDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
