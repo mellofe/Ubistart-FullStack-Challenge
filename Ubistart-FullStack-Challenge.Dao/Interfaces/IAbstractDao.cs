@@ -8,5 +8,6 @@ namespace Ubistart_FullStack_Challenge.Dao.Interfaces
 	{
 		public TEntity Find(Expression<Func<TEntity, bool>> where);
 		public TEntity Create(TEntity User);
+		public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> where);
 	}
 }

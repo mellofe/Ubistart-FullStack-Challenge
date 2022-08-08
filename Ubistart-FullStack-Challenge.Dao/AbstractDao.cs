@@ -50,6 +50,18 @@ namespace Ubistart_FullStack_Challenge.Dao
 				throw;
 			}
 		}
+		public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> where)
+		{
+			try
+			{
+				return DbSet.Where(where);
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+		}
 		public int Save()
 		{
 			try

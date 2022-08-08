@@ -14,6 +14,7 @@ using Ubistart_FullStack_Challenge.Domain;
 using Microsoft.IdentityModel.Tokens;
 using Ubistart_FullStack_Challenge.Dao.Interfaces;
 using Ubistart_FullStack_Challenge.Dao;
+using Ubistart_FullStack_Challenge.Domain.AutoMapper;
 
 namespace Ubistart_FullStack_Challenge
 {
@@ -31,6 +32,8 @@ namespace Ubistart_FullStack_Challenge
 		{
 			services.AddControllersWithViews();
 			services.AddDbContext<SqlContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UbistartDbString")).EnableSensitiveDataLogging());
+
+			services.AddAutoMapper(typeof(AutoMapperConfiguration));
 
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<ITaskService, TaskService>();

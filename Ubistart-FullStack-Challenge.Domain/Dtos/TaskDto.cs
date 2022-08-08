@@ -17,5 +17,14 @@ namespace Ubistart_FullStack_Challenge.Domain.Dtos
 			Description = description;
 			Deadline = deadline;
 		}
+		public TaskDto(Task task)
+		{
+			IdTask = task.IdTask;
+			InsertionDate = task.InsertionDate;
+			Description = task.Description;
+			Deadline = task.Deadline;
+			FinishDate = task.FinishDate;
+			EditDate = task.EditDate;
+		}
 	}
 }
