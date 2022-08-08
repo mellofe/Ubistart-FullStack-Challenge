@@ -36,5 +36,9 @@ namespace Ubistart_FullStack_Challenge.Service
 			List<TaskDto> tasksList = Mapper.Map<List<TaskDto>>(tasks);
 			return tasksList;
 		}
+		public bool PutEditedTask(TaskDto taskDto)
+		{
+			return true;
+		}
 	}
 }

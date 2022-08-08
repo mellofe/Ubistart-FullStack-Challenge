@@ -1,5 +1,4 @@
 ﻿using System;
-using Ubistart_FullStack_Challenge.Domain.Entities;
 
 namespace Ubistart_FullStack_Challenge.Domain.Dtos
 {
