@@ -21,7 +21,7 @@ export class NavMenuComponent {
     this.isExpanded = !this.isExpanded;
   }
   logout(){
-    LoginComponent.isAuthenticated = false;
+    LoginComponent.setIsAuthenticated(false);
     this.router.navigate(['']);
   }
 }
