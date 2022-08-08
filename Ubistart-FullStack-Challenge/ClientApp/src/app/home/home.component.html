@@ -4,19 +4,15 @@
         <thead>
             <tr>
                 <th>Descrição</th>
-                <th>Data de criação</th>
                 <th>Prazo</th>
-                <th>Data de edição</th>
-                <th>Data de finalização</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of tasks">
-                <td>{{ task.Description }}</td>
-                <td>{{ task.InsertionDate }}</td>
-                <td>{{ task.Deadline }}</td>
-                <td>{{ task.EditDate }}</td>
-                <td>{{ task.FinishDate }}</td>
+            <tr *ngFor="let task of DisplayTasks">
+                <td>{{ task.description }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.status }}</td>
             </tr>
         </tbody>
     </table>
