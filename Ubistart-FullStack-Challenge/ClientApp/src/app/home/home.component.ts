@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 	constructor(private userDataService: UserDataService, private router: Router) {
 	}
 
-	editTaskDetails(task: TaskDisplayDto) {
+	private editTaskDetails(task: TaskDisplayDto) {
 		if(task.status === "Tarefa concluida."){
 			alert('Não é permitido alterar uma tarefa concluida');
 			return;
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 		this.editingTask = task;
 	}
 
-	setTaskDone(task: TaskDisplayDto) {
+	private setTaskDone(task: TaskDisplayDto) {
 		let finishedTask: TaskDto = new TaskDto(task);
 		finishedTask.finishDate = new Date();
 
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
 		this.router.navigate(['']);
 	}
 
-	finishTaskEditing() {
+	private finishTaskEditing() {
 		let editedTask: TaskDto = new TaskDto(this.editingTask);
 		editedTask.editDate = new Date();
 
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
 		this.router.navigate(['']);
 	}
 
-	exitTaskEdit() {
+	private exitTaskEdit() {
 		this.isEditingTask = false;
 	}
 
