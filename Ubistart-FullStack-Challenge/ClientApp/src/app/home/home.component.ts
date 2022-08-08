@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
 
   putEditedTask(editedTask: TaskDto){
     this.userDataService.editTask(editedTask).subscribe(data => {
-      if (!data) {
+      if (data) {
         alert('Tarefa atualizada com sucesso.');
       } else {
         alert('Falha na atualização da tarefa.');
