@@ -27,6 +27,19 @@ namespace Ubistart_FullStack_Challenge.Dao
 		{
 			try
 			{
+				return DbSet.FirstOrDefault(where);
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+		}
+
+		public TEntity FindWithoutTracking(Expression<Func<TEntity, bool>> where)
+		{
+			try
+			{
 				return DbSet.AsNoTracking().FirstOrDefault(where);
 			}
 			catch (Exception)
