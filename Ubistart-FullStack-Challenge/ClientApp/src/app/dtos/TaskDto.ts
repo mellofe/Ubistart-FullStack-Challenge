@@ -1,8 +1,8 @@
 export class TaskDto{
-    public IdTask: string;
-    public InsertionDate: Date;
-    public Description: String;
-    public Deadline: Date;
-    public FinishDate: Date;
-    public EditDate: Date;
+    public idTask: string;
+    public insertionDate: string;
+    public description: string;
+    public deadline: string;
+    public finishDate: string;
+    public editDate: string;
 }

@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       if (authenticationResponseDto.userDto) {
         LoginComponent.isAuthenticated = true;
         LoginComponent.token = authenticationResponseDto.token;
-        console.log(LoginComponent.token);
         this.router.navigate(['/home']);
       } else {
         alert('Usuário/senha invalidos.');
