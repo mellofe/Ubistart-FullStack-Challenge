@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
     })
   }
+
+  constructor(private userDataService: UserDataService, private router: Router) { }
+  
   updateDates(){
     let date: Date;
     let dateNow: Date = new Date();
