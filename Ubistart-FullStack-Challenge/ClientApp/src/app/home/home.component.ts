@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     this.userDataService.getUserTasks().subscribe((result) => {
       if (result) {
         this.Tasks = result;
-        this.DisplayTasks = this.updateDates();
+        this.updateDates();
       } else {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
       }
@@ -40,18 +40,16 @@ export class HomeComponent implements OnInit {
   updateDates(){
     let date: Date;
     let dateNow: Date = new Date();
-    let DisplayTasksArray: TaskDisplayDto[] = [];
     let status: string;
-    this.Tasks.forEach(function (task){
-      if(task.deadline < dateNow){
-        status = "A tarefa está atrasada."
+    this.Tasks.forEach(task => {
+      let deadline = new Date(task.deadline);
+      if(deadline < dateNow){
+        status = "Tarefa atrasada."
       } else{
-        status = "A tarefa está em dia."
+        status = "Tarefa em andamento."
       }
       date = new Date(task.deadline);
-      DisplayTasksArray.push(new TaskDisplayDto(task.description, date.toLocaleDateString('pt-BR', {timeZone: 'UTC'}), status));
+      this.DisplayTasks.push(new TaskDisplayDto(task.description, date.toLocaleDateString('pt-BR', {timeZone: 'UTC'}), status));
     });
-    return DisplayTasksArray;
   }
-  
 }
