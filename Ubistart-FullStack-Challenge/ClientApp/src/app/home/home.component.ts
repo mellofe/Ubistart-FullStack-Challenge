@@ -27,17 +27,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['']);
       alert('Faça login para acessar essa página.');
     } else{
-      this.userDataService.getUserTasks().subscribe((result) => {
-        if (result) {
-          this.Tasks = result;
-          this.updateDates();
-        } else {
-          alert('Falha na busca de tarefas cadastradas pelo usuário.');
-        }
-      }, error => {
-        console.log(error);
-          alert('Falha na busca de tarefas cadastradas pelo usuário.');
-      })
+      this.getUserTasks();
     }
   }
   constructor(private userDataService: UserDataService, private router: Router) { 
@@ -53,7 +43,7 @@ export class HomeComponent implements OnInit {
       } else{
         status = "Tarefa em andamento."
       }
-      this.DisplayTasks.push(new TaskDisplayDto(task.idTask, task.description, task.deadline, this.formateDate(deadline), status));
+      this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));
     });
   }
   formateDate(date: Date){
@@ -63,8 +53,36 @@ export class HomeComponent implements OnInit {
     this.isEditingTask = true;
     this.editingTask = task;
   }
-  finishEditing(){
-    this.editingTask.formatedDeadline = this.formateDate(this.editingTask.deadline);
-    console.log(this.editingTask);
+  finishTaskEditing(){
+    let editedTask: TaskDto = new TaskDto(this.editingTask);
+    editedTask.editDate = new Date();
+    console.log(editedTask);
+    this.putEditedTask(editedTask);
+    this.isEditingTask = false;
+  }
+  getUserTasks(){
+    this.userDataService.getUserTasks().subscribe((result) => {
+      if (result) {
+        this.Tasks = result;
+        this.updateDates();
+      } else {
+        alert('Falha na busca de tarefas cadastradas pelo usuário.');
+      }
+    }, error => {
+      console.log(error);
+        alert('Falha na busca de tarefas cadastradas pelo usuário.');
+    })
+  }
+  putEditedTask(editedTask: TaskDto){
+    this.userDataService.editTask(editedTask).subscribe(data => {
+      if (data) {
+        alert('Tarefa atualizada com sucesso.');
+      } else {
+        alert('Falha na atualização da tarefa.');
+      }
+    }, error => {
+      console.log(error);
+      alert('Falha na atualização da tarefa.');
+    })
   }
 }
