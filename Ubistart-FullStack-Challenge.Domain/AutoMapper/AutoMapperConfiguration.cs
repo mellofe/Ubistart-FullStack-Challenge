@@ -9,6 +9,7 @@ namespace Ubistart_FullStack_Challenge.Domain.AutoMapper
 		public AutoMapperConfiguration()
 		{
 			CreateMap<Task, TaskDto>();
+			CreateMap<TaskDto, Task>();
 			CreateMap<UserDto, User>();
 			CreateMap<User, UserDto>();
 			CreateMap<UserSignUpDto, UserDto>();

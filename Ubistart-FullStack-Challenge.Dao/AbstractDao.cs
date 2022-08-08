@@ -27,7 +27,7 @@ namespace Ubistart_FullStack_Challenge.Dao
 		{
 			try
 			{
-				return DbSet.FirstOrDefault(where);
+				return DbSet.AsNoTracking().FirstOrDefault(where);
 			}
 			catch (Exception)
 			{
