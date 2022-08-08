@@ -20,21 +20,21 @@ export class HomeComponent implements OnInit {
     if(!LoginComponent.getIsAuthenticated()){
       this.router.navigate(['']);
       alert('Faça login para acessar essa página.');
+    } else{
+      this.userDataService.getUserTasks().subscribe((result) => {
+        if (result) {
+          this.Tasks = result;
+          this.updateDates();
+        } else {
+          alert('Falha na busca de tarefas cadastradas pelo usuário.');
+        }
+      }, error => {
+        console.log(error);
+          alert('Falha na busca de tarefas cadastradas pelo usuário.');
+      })
     }
   }
-
   constructor(private userDataService: UserDataService, private router: Router) { 
-    this.userDataService.getUserTasks().subscribe((result) => {
-      if (result) {
-        this.Tasks = result;
-        this.updateDates();
-      } else {
-        alert('Falha na busca de tarefas cadastradas pelo usuário.');
-      }
-    }, error => {
-      console.log(error);
-        alert('Falha na busca de tarefas cadastradas pelo usuário.');
-    })
   }
     
   updateDates(){
