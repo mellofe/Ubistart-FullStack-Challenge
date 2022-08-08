@@ -1,3 +1,5 @@
+import { TaskDisplayDto } from "./TaskDisplayDto";
+
 export class TaskDto{
     public idTask: string;
     public insertionDate: Date;
@@ -5,4 +7,13 @@ export class TaskDto{
     public deadline: Date;
     public finishDate: Date;
     public editDate: Date;
+
+    constructor(displayTask: TaskDisplayDto){
+        this.idTask = displayTask.id;
+        this.insertionDate = displayTask.insertionDate;
+        this.description = displayTask.description;
+        this.deadline = displayTask.deadline;
+        this.finishDate = displayTask.finishDate;
+        this.editDate = displayTask.editDate;
+    }
 }
