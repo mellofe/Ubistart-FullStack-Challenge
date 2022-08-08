@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { UserDataService } from './data-services/user.data-service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

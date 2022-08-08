@@ -15,8 +15,10 @@ import { faPencil, faCheck } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public Tasks: TaskDto[];
-  public DisplayTasks: TaskDisplayDto[] = [];
+  private isEditingTask = false;
+  private Tasks: TaskDto[];
+  private DisplayTasks: TaskDisplayDto[] = [];
+  private editingTask: TaskDisplayDto;
   faPencil = faPencil;
   faCheck = faCheck
 
@@ -42,7 +44,6 @@ export class HomeComponent implements OnInit {
   }
     
   updateDates(){
-    let date: Date;
     let dateNow: Date = new Date();
     let status: string;
     this.Tasks.forEach(task => {
@@ -52,8 +53,18 @@ export class HomeComponent implements OnInit {
       } else{
         status = "Tarefa em andamento."
       }
-      date = new Date(task.deadline);
-      this.DisplayTasks.push(new TaskDisplayDto(task.description, date.toLocaleDateString('pt-BR', {timeZone: 'UTC'}), status));
+      this.DisplayTasks.push(new TaskDisplayDto(task.idTask, task.description, task.deadline, this.formateDate(deadline), status));
     });
+  }
+  formateDate(date: Date){
+    return date.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+  }
+  editTaskDetails(task: TaskDisplayDto){
+    this.isEditingTask = true;
+    this.editingTask = task;
+  }
+  finishEditing(){
+    this.editingTask.formatedDeadline = this.formateDate(this.editingTask.deadline);
+    console.log(this.editingTask);
   }
 }

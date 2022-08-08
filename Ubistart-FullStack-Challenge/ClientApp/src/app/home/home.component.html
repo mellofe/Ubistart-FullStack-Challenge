@@ -1,4 +1,4 @@
-<div class="text-center task-block">
+<div *ngIf="!isEditingTask" class="text-center task-block">
     <h1 class="h3 mb-3 font-weight-normal">Lista de Tarefas</h1>
     <table class="table table-striped" aria-labelledby="tableLabel">
         <thead>
@@ -12,13 +12,34 @@
         <tbody>
             <tr *ngFor="let task of DisplayTasks">
                 <td>{{ task.description }}</td>
-                <td>{{ task.deadline }}</td>
+                <td>{{ task.formatedDeadline }}</td>
                 <td>{{ task.status }}</td>
                 <td>
-                    <fa-icon class="fa-lg" style="padding-right: 30px;" [icon]="faPencil"></fa-icon>
+                    <a class="btn" (click)="editTaskDetails(task)" style="margin-right: 30px;">
+                        <fa-icon class="fa-lg" [icon]="faPencil"></fa-icon>
+                    </a>
                     <fa-icon class="fa-lg" [icon]="faCheck"></fa-icon>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div *ngIf="isEditingTask" class="text-center task-block">
+    <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal default-padding">Editar dados da tarefa</h1>
+        <div class="task-sub-block"> 
+            <div class="text-spacement-top default-padding">
+                <span class="text-align">Descrição</span>
+                <input id="description" name="description" type="text" class="form-control" [(ngModel)]="editingTask.description">
+            </div>
+            <div class="text-spacement-top default-padding">
+                <span class="text-align">Prazo</span>
+                <input id="deadline" name="deadline" type="date" class="form-control" [(ngModel)]="editingTask.deadline">
+            </div>
+        </div>
+        <div class="text-spacement-top default-padding">
+            <button class="btn btn-lg btn-dark btn-block" (click)="finishEditing()">Editar tarefa</button>
+        </div>
+    </form>
 </div>
