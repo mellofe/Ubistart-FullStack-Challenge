@@ -15,12 +15,11 @@ namespace Ubistart_FullStack_Challenge.Service
 		private readonly ITaskDao TaskDao;
 		private readonly IMapper Mapper;
 		public UserService UserService;
-		public System.Security.Principal.IPrincipal User { get; set; }
 
 		public TaskService(ITaskDao taskDao, IUserDao userDao, IMapper mapper)
 		{
 			TaskDao = taskDao;
-			UserService = new UserService(userDao);
+			UserService = new UserService(userDao, mapper);
 			Mapper = mapper;
 		}
 		public bool TaskRegister(TaskRegisterDto taskRegisterDto, int userFk)

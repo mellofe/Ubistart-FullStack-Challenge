@@ -2,6 +2,7 @@
 using Ubistart_FullStack_Challenge.Service.Interfaces;
 using Ubistart_FullStack_Challenge.Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 namespace Ubistart_FullStack_Challenge.Controllers
 {
@@ -10,9 +11,11 @@ namespace Ubistart_FullStack_Challenge.Controllers
 	public class UserController : ControllerBase
 	{
 		private readonly IUserService UserService;
-		public UserController(IUserService userService)
+		private readonly IMapper Mapper;
+		public UserController(IUserService userService, IMapper mapper)
 		{
 			this.UserService = userService;
+			Mapper = mapper;
 		}
 
 		[HttpPost("authenticate"), AllowAnonymous]
@@ -23,7 +26,7 @@ namespace Ubistart_FullStack_Challenge.Controllers
 		[HttpPost("signup"), AllowAnonymous]
 		public IActionResult SignUp(UserSignUpDto userSignUpDto)
 		{
-			return Ok(this.UserService.SignUp(new UserDto(userSignUpDto)));
+			return Ok(this.UserService.SignUp(Mapper.Map<UserDto>(userSignUpDto)));
 		}
 	}
 }

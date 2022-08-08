@@ -3,16 +3,19 @@ using Ubistart_FullStack_Challenge.Domain.Dtos;
 using Ubistart_FullStack_Challenge.Domain.Entities;
 using Ubistart_FullStack_Challenge.Dao.Interfaces;
 using System;
+using AutoMapper;
 
 namespace Ubistart_FullStack_Challenge.Service
 {
 	public class UserService : IUserService
 	{
 		private readonly IUserDao UserDao;
+		private readonly IMapper Mapper;
 
-		public UserService(IUserDao userDao)
+		public UserService(IUserDao userDao, IMapper mapper)
 		{
 			UserDao = userDao;
+			Mapper = mapper;
 		}
 
 		public AuthenticationResponseDto Authenticate(AuthenticationRequestDto authenticationRequestDto)
@@ -23,7 +26,7 @@ namespace Ubistart_FullStack_Challenge.Service
 			{
 				throw new System.Exception("");
 			}
-			return new AuthenticationResponseDto(new UserDto(user), TokenService.GenerateToken(user));
+			return new AuthenticationResponseDto(Mapper.Map<UserDto>(user), TokenService.GenerateToken(user));
 		}
 		public bool SignUp(UserDto userDto)
 		{
