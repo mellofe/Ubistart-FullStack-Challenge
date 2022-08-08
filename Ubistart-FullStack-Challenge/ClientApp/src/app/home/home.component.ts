@@ -7,7 +7,7 @@ import { UserDataService } from '../data-services/user.data-service';
 import { TaskDto } from '../dtos/TaskDto';
 import { TaskDisplayDto } from '../dtos/TaskDisplayDto';
 
-import { faPencil, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
   private DisplayTasks: TaskDisplayDto[] = [];
   private editingTask: TaskDisplayDto;
   faPencil = faPencil;
-  faCheck = faCheck
+  faCheck = faCheck;
+  faTimes = faTimes;
 
   ngOnInit(): void {
     if(!LoginComponent.getIsAuthenticated()){
@@ -46,20 +47,30 @@ export class HomeComponent implements OnInit {
       this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));
     });
   }
+
   formateDate(date: Date){
     return date.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
   }
+
   editTaskDetails(task: TaskDisplayDto){
     this.isEditingTask = true;
     this.editingTask = task;
   }
+
   finishTaskEditing(){
     let editedTask: TaskDto = new TaskDto(this.editingTask);
     editedTask.editDate = new Date();
-    console.log(editedTask);
+
     this.putEditedTask(editedTask);
+
+    this.isEditingTask = false;
+    this.router.navigate(['']);
+  }
+
+  exitTaskEdit(){
     this.isEditingTask = false;
   }
+
   getUserTasks(){
     this.userDataService.getUserTasks().subscribe((result) => {
       if (result) {
@@ -73,6 +84,7 @@ export class HomeComponent implements OnInit {
         alert('Falha na busca de tarefas cadastradas pelo usuário.');
     })
   }
+  
   putEditedTask(editedTask: TaskDto){
     this.userDataService.editTask(editedTask).subscribe(data => {
       if (data) {
@@ -85,4 +97,5 @@ export class HomeComponent implements OnInit {
       alert('Falha na atualização da tarefa.');
     })
   }
+  
 }

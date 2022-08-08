@@ -7,6 +7,10 @@
 .default-padding{
     padding-top: 20px;
 }
+.edit-task-exit{
+    margin-left:400px;
+
+}
 .task-block{  
     display:flex;
     flex-direction: column;
@@ -16,6 +20,7 @@
 .task-sub-block{  
     display:flex; 
     flex-direction: column;
+    align-self: center;
     width:400px;
 }
 .text-align{

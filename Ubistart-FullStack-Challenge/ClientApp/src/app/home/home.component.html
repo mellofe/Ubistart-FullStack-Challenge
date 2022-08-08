@@ -26,8 +26,11 @@
 </div>
 
 <div *ngIf="isEditingTask" class="text-center task-block">
+    <a class="btn edit-task-exit" (click)="exitTaskEdit()">
+        <fa-icon class="fa-lg" [icon]="faTimes"></fa-icon>
+    </a>
     <form class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal default-padding">Editar dados da tarefa</h1>
+        <h1 class="h3 mb-3 font-weight-normal default-padding title">Editar dados da tarefa</h1>
         <div class="task-sub-block"> 
             <div class="text-spacement-top default-padding">
                 <span class="text-align">Descrição</span>
@@ -37,9 +40,9 @@
                 <span class="text-align">Prazo</span>
                 <input id="deadline" name="deadline" type="date" class="form-control" [(ngModel)]="editingTask.deadline">
             </div>
-        </div>
-        <div class="text-spacement-top default-padding">
-            <button class="btn btn-lg btn-dark btn-block" (click)="finishTaskEditing()">Editar tarefa</button>
+            <div class="text-spacement-top default-padding">
+                <button class="btn btn-lg btn-dark btn-block" (click)="finishTaskEditing()">Editar tarefa</button>
+            </div>
         </div>
     </form>
 </div>
