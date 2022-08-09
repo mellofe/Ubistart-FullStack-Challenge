@@ -38,6 +38,10 @@ namespace Ubistart_FullStack_Challenge.Service
 		{
 			IEnumerable<Task> tasks = this.TaskDao.GetAllTasks();
 			List<TaskDto> tasksList = Mapper.Map<List<TaskDto>>(tasks);
+			foreach (TaskDto task in tasksList)
+			{
+				task.Email = this.UserService.FindUserById(task.UserFK).Email;
+			}
 			return tasksList;
 		}
 

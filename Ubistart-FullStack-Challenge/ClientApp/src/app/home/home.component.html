@@ -6,18 +6,20 @@
     <table class="table table-striped default-padding" aria-labelledby="tableLabel">
         <thead>
             <tr>
+                <th *ngIf="isAdmin">Email</th>
                 <th>Descrição</th>
                 <th>Prazo</th>
                 <th>Status</th>
-                <th></th>
+                <th *ngIf="!isAdmin"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let task of DisplayTasks">
+                <td *ngIf="isAdmin">{{ task.email }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.formatedDeadline }}</td>
                 <td>{{ task.status }}</td>
-                <td>
+                <td *ngIf="!isAdmin">
                     <a class="btn" (click)="editTaskDetails(task)" style="margin-right: 30px;">
                         <fa-icon class="fa-lg" [icon]="faPencil"></fa-icon>
                     </a>
