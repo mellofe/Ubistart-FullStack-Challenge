@@ -7,5 +7,6 @@ namespace Ubistart_FullStack_Challenge.Dao.Interfaces
 	{
 		public IEnumerable<Task> GetUserTasks(int userFk);
 		public bool Update(Task task);
+		public IEnumerable<Task> GetAllTasks();
 	}
 }
