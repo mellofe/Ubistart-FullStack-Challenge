@@ -21,6 +21,7 @@ const TAREFA_CONCLUIDA = "Tarefa concluida."
 
 export class HomeComponent implements OnInit {
 	private isEditingTask = false;
+	private page: number = 1;
 	private isAdmin: boolean;
 	private Tasks: TaskDto[];
 	private DisplayTasks: TaskDisplayDto[] = [];

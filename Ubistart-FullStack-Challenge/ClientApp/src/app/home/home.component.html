@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of DisplayTasks">
+            <tr *ngFor="let task of DisplayTasks | paginate: {itemsPerPage: 10, currentPage: page};">
                 <td *ngIf="isAdmin">{{ task.email }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.formatedDeadline }}</td>
@@ -30,6 +30,7 @@
             </tr>
         </tbody>
     </table>
+    <pagination-controls (pageChange)="page = $event" class="default-padding"></pagination-controls>
 </div>
 
 <div *ngIf="isEditingTask" class="text-center task-block">
