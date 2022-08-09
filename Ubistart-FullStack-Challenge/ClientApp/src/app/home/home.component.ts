@@ -9,6 +9,10 @@ import { TaskDisplayDto } from '../dtos/TaskDisplayDto';
 
 import { faPencil, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+const TAREFA_ATRASADA = "Tarefa atrasada."
+const TAREFA_EM_ANDAMENTO = "Tarefa em andamento."
+const TAREFA_CONCLUIDA = "Tarefa concluida."
+
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
@@ -17,8 +21,10 @@ import { faPencil, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export class HomeComponent implements OnInit {
 	private isEditingTask = false;
+	private isAdmin: boolean;
 	private Tasks: TaskDto[];
 	private DisplayTasks: TaskDisplayDto[] = [];
+	private LateTasks: TaskDisplayDto[] = [];
 	private editingTask: TaskDisplayDto;
 	readonly defaultDate  = new Date("0001-01-01T00:00:00");
 
@@ -33,12 +39,13 @@ export class HomeComponent implements OnInit {
 		} else {
 			this.getUserTasks();
 		}
+		this.isAdmin = LoginComponent.getIsAdmin();
 	}
 	constructor(private userDataService: UserDataService, private router: Router) {
 	}
 
 	private editTaskDetails(task: TaskDisplayDto) {
-		if(task.status === "Tarefa concluida."){
+		if(task.status === TAREFA_CONCLUIDA){
 			alert('Não é permitido alterar uma tarefa concluida.');
 			return;
 		}
@@ -47,7 +54,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	private setTaskDone(task: TaskDisplayDto) {
-		if(task.status === "Tarefa concluida."){
+		if(task.status === TAREFA_CONCLUIDA){
 			alert('Tarefa já foi concluida.');
 			return;
 		}
@@ -70,6 +77,18 @@ export class HomeComponent implements OnInit {
 
 	private exitTaskEdit() {
 		this.isEditingTask = false;
+	}
+
+	private lateTasksFilter(){
+		if(!this.isAdmin){
+			return;
+		}
+		this.DisplayTasks.forEach(task => {
+			if(task.status === TAREFA_ATRASADA){
+				this.LateTasks.push(task);
+			}
+		});
+		this.DisplayTasks = this.LateTasks;
 	}
 
 	private getUserTasks() {
@@ -107,11 +126,11 @@ export class HomeComponent implements OnInit {
 			let finishDate = new Date(task.finishDate);
 
 			if (!(finishDate.toDateString() === this.defaultDate.toDateString())) {
-				status = "Tarefa concluida."
+				status = TAREFA_CONCLUIDA
 			} else if (deadline < dateNow) {
-				status = "Tarefa atrasada."
+				status = TAREFA_ATRASADA
 			} else {
-				status = "Tarefa em andamento."
+				status = TAREFA_EM_ANDAMENTO
 			}
 
 			this.DisplayTasks.push(new TaskDisplayDto(task, this.formateDate(deadline), status));

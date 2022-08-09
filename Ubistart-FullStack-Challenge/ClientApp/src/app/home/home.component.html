@@ -1,6 +1,9 @@
 <div *ngIf="!isEditingTask" class="text-center task-block">
     <h1 class="h3 mb-3 font-weight-normal">Lista de Tarefas</h1>
-    <table class="table table-striped" aria-labelledby="tableLabel">
+    <div class="filter-tasks-btn" *ngIf="isAdmin">
+        <button class="btn btn-dark" (click)="lateTasksFilter()">Filtrar tarefas atrasadas</button>
+    </div>
+    <table class="table table-striped default-padding" aria-labelledby="tableLabel">
         <thead>
             <tr>
                 <th>Descrição</th>
