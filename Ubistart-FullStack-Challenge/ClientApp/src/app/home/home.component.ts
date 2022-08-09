@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
 	readonly faTimes = faTimes;
 
 	ngOnInit(): void {
+		this.isAdmin = LoginComponent.getIsAdmin();
 		if (!LoginComponent.getIsAuthenticated()) {
 			this.router.navigate(['']);
 			alert('Faça login para acessar essa página.');
@@ -44,7 +45,6 @@ export class HomeComponent implements OnInit {
 				this.getUserTasks();
 			}
 		}
-		this.isAdmin = LoginComponent.getIsAdmin();
 	}
 	constructor(private userDataService: UserDataService, private router: Router) {
 	}
