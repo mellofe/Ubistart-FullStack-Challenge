@@ -24,14 +24,14 @@ namespace Ubistart_FullStack_Challenge.Service
 
 			if (user == null)
 			{
-				throw new System.Exception("");
+				throw new System.Exception("Invalid user parameters.");
 			}
 			return new AuthenticationResponseDto(Mapper.Map<UserDto>(user), TokenService.GenerateToken(user));
 		}
 		public bool SignUp(UserDto userDto)
 		{
 			if (userDto.IdUser != default)
-				throw new Exception("UserID must be empty");
+				throw new Exception("UserId must be empty.");
 
 			User user = new User(userDto);
 			this.UserDao.Create(user);

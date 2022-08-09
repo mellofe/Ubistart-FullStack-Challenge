@@ -49,7 +49,7 @@ namespace Ubistart_FullStack_Challenge.Service
 		{
 			if (taskDto == null || taskDto.IdTask == default)
 			{
-				throw new Exception("Task invalida");
+				throw new Exception("Invalid task parameters.");
 			}
 
 			Task task = this.TaskDao.FindWithoutTracking(x => x.IdTask == taskDto.IdTask);
