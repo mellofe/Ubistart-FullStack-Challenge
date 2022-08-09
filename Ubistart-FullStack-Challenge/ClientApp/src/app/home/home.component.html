@@ -11,7 +11,7 @@
                 <th>Descrição</th>
                 <th>Prazo</th>
                 <th>Status</th>
-                <th *ngIf="!isAdmin"></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                 <td>{{ task.description }}</td>
                 <td>{{ task.formatedDeadline }}</td>
                 <td>{{ task.status }}</td>
-                <td *ngIf="!isAdmin">
+                <td>
                     <a class="btn" (click)="editTaskDetails(task)" style="margin-right: 30px;">
                         <fa-icon class="fa-lg" [icon]="faPencil"></fa-icon>
                     </a>
