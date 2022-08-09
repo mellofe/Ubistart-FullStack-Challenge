@@ -1,5 +1,8 @@
-.default-padding{
+.default-margin-top{
     margin-top: 20px;
+}
+.default-margin-right{
+    margin-right: 20px;
 }
 .edit-task-exit{
     margin-left:400px;

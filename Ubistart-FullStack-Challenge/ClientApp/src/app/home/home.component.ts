@@ -21,6 +21,7 @@ const TAREFA_CONCLUIDA = "Tarefa concluida."
 
 export class HomeComponent implements OnInit {
 	private isEditingTask = false;
+	private isFilteringTask = false;
 	private page: number = 1;
 	private isAdmin: boolean;
 	private Tasks: TaskDto[];
@@ -86,7 +87,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	private lateTasksFilter(){
-		if(!this.isAdmin){
+		if(!this.isAdmin || this.isFilteringTask){
 			return;
 		}
 		this.DisplayTasks.forEach(task => {
@@ -95,6 +96,11 @@ export class HomeComponent implements OnInit {
 			}
 		});
 		this.DisplayTasks = this.LateTasks;
+		this.isFilteringTask = true;
+	}
+
+	private clearFilter(){
+		this.router.navigate(['']);
 	}
 
 	private getUserTasks() {
