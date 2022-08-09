@@ -37,7 +37,12 @@ export class HomeComponent implements OnInit {
 			this.router.navigate(['']);
 			alert('Faça login para acessar essa página.');
 		} else {
-			this.getUserTasks();
+			if(this.isAdmin){
+				this.getAdminTasks();
+			}
+			else{
+				this.getUserTasks();
+			}
 		}
 		this.isAdmin = LoginComponent.getIsAdmin();
 	}
@@ -102,6 +107,20 @@ export class HomeComponent implements OnInit {
 		}, error => {
 			console.log(error);
 			alert('Falha na busca de tarefas cadastradas pelo usuário.');
+		})
+	}
+	
+	private getAdminTasks() {
+		this.userDataService.getAdminTasks().subscribe((result) => {
+			if (result) {
+				this.Tasks = result;
+				this.updateDates();
+			} else {
+				alert('Falha na busca de tarefas cadastradas pelos usuários.');
+			}
+		}, error => {
+			console.log(error);
+			alert('Falha na busca de tarefas cadastradas pelos usuários.');
 		})
 	}
 
