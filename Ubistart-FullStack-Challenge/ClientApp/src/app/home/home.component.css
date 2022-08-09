@@ -1,22 +1,18 @@
+.default-margin-top{
+    margin-top: 20px;
+}
+.default-margin-right{
+    margin-right: 20px;
+}
+.edit-task-exit{
+    margin-left:400px;
+}
 .task-block{  
     display:flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10%;
     margin-bottom: 10%;
-}
-.default-padding{
-    padding-top: 20px;
-}
-.edit-task-exit{
-    margin-left:400px;
-
-}
-.task-block{  
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10%;
 }
 .task-sub-block{  
     display:flex; 
@@ -27,4 +23,8 @@
 .text-align{
     display:flex; 
     align-self: flex-start;
+}
+.filter-tasks-btn{
+    display: flex;
+    align-self: flex-end;
 }

@@ -1,8 +1,13 @@
 <div *ngIf="!isEditingTask" class="text-center task-block">
     <h1 class="h3 mb-3 font-weight-normal">Lista de Tarefas</h1>
-    <table class="table table-striped" aria-labelledby="tableLabel">
+    <div class="filter-tasks-btn" *ngIf="isAdmin">
+        <button class="btn btn-dark default-margin-right" (click)="clearFilter()">Limpar filtro</button>
+        <button class="btn btn-dark" (click)="lateTasksFilter()">Filtrar tarefas atrasadas</button>
+    </div>
+    <table class="table table-striped default-margin-top" aria-labelledby="tableLabel">
         <thead>
             <tr>
+                <th *ngIf="isAdmin">Email</th>
                 <th>Descrição</th>
                 <th>Prazo</th>
                 <th>Status</th>
@@ -10,7 +15,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of DisplayTasks">
+            <tr *ngFor="let task of DisplayTasks | paginate: {itemsPerPage: 10, currentPage: page};">
+                <td *ngIf="isAdmin">{{ task.email }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.formatedDeadline }}</td>
                 <td>{{ task.status }}</td>
@@ -25,6 +31,7 @@
             </tr>
         </tbody>
     </table>
+    <pagination-controls (pageChange)="page = $event" class="default-margin-top"></pagination-controls>
 </div>
 
 <div *ngIf="isEditingTask" class="text-center task-block">
@@ -32,17 +39,17 @@
         <fa-icon class="fa-lg" [icon]="faTimes"></fa-icon>
     </a>
     <form class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal default-padding title">Editar dados da tarefa</h1>
+        <h1 class="h3 mb-3 font-weight-normal default-margin-top title">Editar dados da tarefa</h1>
         <div class="task-sub-block"> 
-            <div class="text-spacement-top default-padding">
+            <div class="text-spacement-top default-margin-top">
                 <span class="text-align">Descrição</span>
                 <input id="description" name="description" type="text" class="form-control" [(ngModel)]="editingTask.description">
             </div>
-            <div class="text-spacement-top default-padding">
+            <div class="text-spacement-top default-margin-top">
                 <span class="text-align">Prazo</span>
                 <input id="deadline" name="deadline" type="date" class="form-control" [(ngModel)]="editingTask.deadline">
             </div>
-            <div class="text-spacement-top default-padding">
+            <div class="text-spacement-top default-margin-top">
                 <button class="btn btn-lg btn-dark btn-block" (click)="finishTaskEditing()">Editar tarefa</button>
             </div>
         </div>

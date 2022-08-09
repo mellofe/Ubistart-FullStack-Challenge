@@ -16,6 +16,10 @@ namespace Ubistart_FullStack_Challenge.Dao
 		{
 			return Query(x => x.UserFK == userFk);
 		}
+		public IEnumerable<Task> GetAllTasks()
+		{
+			return DbSet;
+		}
 		public bool Update(Task task)
 		{
 			try

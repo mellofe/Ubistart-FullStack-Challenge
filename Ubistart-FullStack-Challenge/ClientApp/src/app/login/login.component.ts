@@ -13,6 +13,7 @@ import { AuthenticationResponseDto } from '../dtos/AuthenticationResponseDto';
 export class LoginComponent implements OnInit {
   private authenticationRequestDto: AuthenticationRequestDto = new AuthenticationRequestDto();
   private static isAuthenticated: boolean;
+  private static isAdmin: boolean;
   private static token: string;
 
   static getIsAuthenticated(): boolean {
@@ -23,6 +24,9 @@ export class LoginComponent implements OnInit {
   }
   static getToken(): string {
     return this.token;
+  }
+  static getIsAdmin(): boolean{
+    return this.isAdmin;
   }
 
   ngOnInit(): void {
@@ -38,6 +42,7 @@ export class LoginComponent implements OnInit {
       if (result) {
         LoginComponent.isAuthenticated = true;
         LoginComponent.token = result.token;
+        LoginComponent.isAdmin = result.userDto.isAdmin;
         this.router.navigate(['/home']);
       } else {
         alert('Usuário/senha invalidos.');

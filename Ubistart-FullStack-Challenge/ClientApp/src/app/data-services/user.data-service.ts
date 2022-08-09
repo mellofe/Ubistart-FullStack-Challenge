@@ -23,6 +23,9 @@ export class UserDataService {
   getUserTasks(){
     return this.http.get<TaskDto[]>(this.taskModule + '/usertasks');
   }
+  getAdminTasks(){
+    return this.http.get<TaskDto[]>(this.taskModule + '/alltasks');
+  }
   editTask(data: any) {
     return this.http.put(this.taskModule + '/edittask', data);
   }

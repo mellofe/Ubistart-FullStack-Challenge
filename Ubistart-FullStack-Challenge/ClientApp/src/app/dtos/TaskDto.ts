@@ -1,3 +1,4 @@
+import * as internal from "assert";
 import { TaskDisplayDto } from "./TaskDisplayDto";
 
 export class TaskDto{
@@ -7,6 +8,8 @@ export class TaskDto{
     public deadline: Date;
     public finishDate: Date;
     public editDate: Date;
+    public userFk: string;
+    public email: string;
 
     constructor(displayTask: TaskDisplayDto){
         this.idTask = displayTask.id;

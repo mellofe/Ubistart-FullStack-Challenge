@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Ubistart_FullStack_Challenge.Dao.Interfaces;
 using Ubistart_FullStack_Challenge.Domain.Dtos;
 using Ubistart_FullStack_Challenge.Domain.Entities;
@@ -36,11 +34,22 @@ namespace Ubistart_FullStack_Challenge.Service
 			List<TaskDto> tasksList = Mapper.Map<List<TaskDto>>(tasks);
 			return tasksList;
 		}
+		public List<TaskDto> GetAllTasks()
+		{
+			IEnumerable<Task> tasks = this.TaskDao.GetAllTasks();
+			List<TaskDto> tasksList = Mapper.Map<List<TaskDto>>(tasks);
+			foreach (TaskDto task in tasksList)
+			{
+				task.Email = this.UserService.FindUserById(task.UserFK).Email;
+			}
+			return tasksList;
+		}
+
 		public bool PutEditedTask(TaskDto taskDto)
 		{
 			if (taskDto == null || taskDto.IdTask == default)
 			{
-				throw new Exception("Task invalida");
+				throw new Exception("Invalid task parameters.");
 			}
 
 			Task task = this.TaskDao.FindWithoutTracking(x => x.IdTask == taskDto.IdTask);
