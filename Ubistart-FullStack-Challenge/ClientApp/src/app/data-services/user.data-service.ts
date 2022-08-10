@@ -17,6 +17,9 @@ export class UserDataService {
   signup(data: any){
     return this.http.post(this.userModule + '/signup', data);
   }
+  checkUserIsAdmin(){
+    return this.http.get<Boolean>(this.userModule + '/checkadmin');
+  }
   taskRegister(data: any){
     return this.http.post(this.taskModule + '/taskregister', data);
   }
@@ -29,4 +32,5 @@ export class UserDataService {
   editTask(data: any) {
     return this.http.put(this.taskModule + '/edittask', data);
   }
+  
 }

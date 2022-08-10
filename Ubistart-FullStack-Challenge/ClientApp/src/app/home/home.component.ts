@@ -35,18 +35,11 @@ export class HomeComponent implements OnInit {
 	readonly faTimes = faTimes;
 
 	ngOnInit(): void {
-		this.isAdmin = LoginComponent.getIsAdmin();
 		if (!LoginComponent.getIsAuthenticated()) {
 			this.router.navigate(['']);
 			alert('Faça login para acessar essa página.');
-		} else {
-			if(this.isAdmin){
-				this.getAdminTasks();
-			}
-			else{
-				this.getUserTasks();
-			}
 		}
+		this.checkUserIsAdminAndCallTasks();
 	}
 	constructor(private userDataService: UserDataService, private router: Router) {
 	}
@@ -114,9 +107,20 @@ export class HomeComponent implements OnInit {
 		}, error => {
 			console.log(error);
 			alert('Falha na busca de tarefas cadastradas pelo usuário.');
-		})
+		});
 	}
 	
+	private checkUserIsAdminAndCallTasks(){
+		this.userDataService.checkUserIsAdmin().subscribe((result: boolean) =>{
+			if (result){
+				this.getAdminTasks();
+			} else{
+				this.getUserTasks();
+			}
+			this.isAdmin = result;
+		});
+	}
+
 	private getAdminTasks() {
 		this.userDataService.getAdminTasks().subscribe((result) => {
 			if (result) {
@@ -128,7 +132,7 @@ export class HomeComponent implements OnInit {
 		}, error => {
 			console.log(error);
 			alert('Falha na busca de tarefas cadastradas pelos usuários.');
-		})
+		});
 	}
 
 	private putEditedTask(editedTask: TaskDto) {
@@ -141,7 +145,7 @@ export class HomeComponent implements OnInit {
 		}, error => {
 			console.log(error);
 			alert('Falha na atualização da tarefa.');
-		})
+		});
 	}
 
 	private updateDates() {

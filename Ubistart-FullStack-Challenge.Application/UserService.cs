@@ -28,6 +28,12 @@ namespace Ubistart_FullStack_Challenge.Service
 			}
 			return new AuthenticationResponseDto(Mapper.Map<UserDto>(user), TokenService.GenerateToken(user));
 		}
+		public bool CheckUserIsAdmin(int userId)
+		{
+			User user = FindUserById(userId);
+
+			return user.IsAdmin;
+		}
 		public bool SignUp(UserDto userDto)
 		{
 			if (userDto.IdUser != default)
