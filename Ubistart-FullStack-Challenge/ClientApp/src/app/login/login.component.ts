@@ -12,21 +12,15 @@ import { AuthenticationResponseDto } from '../dtos/AuthenticationResponseDto';
 })
 export class LoginComponent implements OnInit {
   private authenticationRequestDto: AuthenticationRequestDto = new AuthenticationRequestDto();
-  private static isAuthenticated: boolean;
-  private static isAdmin: boolean;
-  private static token: string;
 
   static getIsAuthenticated(): boolean {
-    return this.isAuthenticated;
+    return localStorage.getItem("isAuthenticated") === "true";
   }
   static setIsAuthenticated(isAuthenticated: boolean){
-    LoginComponent.isAuthenticated = isAuthenticated;
+    localStorage.setItem("isAuthenticated", String(isAuthenticated));
   }
   static getToken(): string {
-    return this.token;
-  }
-  static getIsAdmin(): boolean{
-    return this.isAdmin;
+    return localStorage.getItem("token");
   }
 
   ngOnInit(): void {
@@ -40,9 +34,8 @@ export class LoginComponent implements OnInit {
   private authenticate() {
     this.userDataService.authenticate(this.authenticationRequestDto).subscribe((result: AuthenticationResponseDto) => {
       if (result) {
-        LoginComponent.isAuthenticated = true;
-        LoginComponent.token = result.token;
-        LoginComponent.isAdmin = result.userDto.isAdmin;
+        localStorage.setItem('isAuthenticated', "true");
+        localStorage.setItem('token', result.token);
         this.router.navigate(['/home']);
       } else {
         alert('Usuário/senha invalidos.');
